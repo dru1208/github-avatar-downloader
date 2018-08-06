@@ -1,3 +1,4 @@
+var dotenv = require('dotenv').config()
 var request = require("request");
 var secrets = require("./secrets.js");
 var fs = require("fs");
@@ -17,7 +18,7 @@ function getRepoContributors(repoOwner, repoName, cb) {
     // using variables for repoOwner and repoName allow for modular code
     headers: {
       "User-Agent": "request",
-      Authorization: secrets.GITHUB_TOKEN // GITHUB_TOKEN format in secrets.js is "token token_number"
+      Authorization: process.env.GITHUB_TOKEN // GITHUB_TOKEN format in secrets.js is "token token_number"
     }
   };
   request(options, function(err, res, body) {
